@@ -8,7 +8,7 @@ encoder = joblib.load("label_encoder.pkl")
 
 # Set Streamlit page configuration
 st.set_page_config(page_title="Smart Traffic Controller", layout="centered")
-st.title("🚦 Smart Traffic Light Controller (2 Roads + RGB LED)")
+st.title("🚦 Smart Traffic Density Estimator")
 st.markdown("👋 This system uses **1 ultrasonic sensor** that you reposition to monitor either **Road 1** or **Road 2**.")
 
 # --- Input Section ---
