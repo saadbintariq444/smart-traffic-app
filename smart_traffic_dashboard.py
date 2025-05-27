@@ -1,29 +1,9 @@
-import streamlit as st
-import pandas as pd
-import joblib
-
-# Load model and encoder
-model = joblib.load("traffic_model.pkl")
-encoder = joblib.load("label_encoder.pkl")
-
-st.set_page_config(page_title="Smart Traffic Light", layout="centered")
-st.title("🚦 Smart Traffic Light Controller (2 Roads + RGB LED)")
-st.markdown("Move sensor to either road and enter the detected vehicle count.")
-
-# Select the road being monitored
-monitored_road = st.selectbox("Sensor currently facing:", ["Road 1", "Road 2"])
-
-# Input from ultrasonic sensor and count estimate
-vehicle_count = st.slider("Total Vehicle Count on Monitored Road", 0, 300, 80)
-active_road_vehicles = st.slider("Vehicles Detected by Sensor", 0, 4, 2)
-
 # Button to make prediction and control signal
 if st.button("Predict & Control Signal"):
-    # Create input features for model
+    # ✅ Corrected: Only include expected features
     input_data = pd.DataFrame([{
         'Vehicle Count': vehicle_count,
-        'Active Road Vehicles': active_road_vehicles,
-        'Vehicle Type Count': 3  # Placeholder (model expects it, will remove in retrain later)
+        'Active Road Vehicles': active_road_vehicles
     }])
 
     # Model prediction
